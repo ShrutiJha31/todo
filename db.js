@@ -3,10 +3,10 @@ const mysql = require("mysql");
 
 const pool  = mysql.createPool({
   connectionLimit : 10,
-  host            : process.env.HOST||'localhost',
-  user            : process.env.DB_USER||'root',
-  password        : process.env.DB_PASSWORD||'Shivam@25',
-  database        : process.env.DATABASE||'todo-app'
+  host            : "remotemysql.com",
+  user            : "ToeVvSYMb7",
+  password        : "83EYFIiabn",
+  database        : "ToeVvSYMb7"
 })
  
 pool.getConnection((err, connection) => {
@@ -15,7 +15,24 @@ pool.getConnection((err, connection) => {
   } else {
     console.log("Connected to Database");
   }
-  if (connection) connection.release();
+  if (connection){
+
+    let createTodos = `create table if not exists events(
+      id int primary key auto_increment,
+      eventName text,
+      eventDate date
+  )`;
+    connection.query(createTodos, function(err, results, fields) {
+      if (err) {
+        console.log(err.message);
+      }
+      else
+      {
+        console.log("Table Created Successfully!")
+      }
+    });
+    
+    connection.release()};
   return;
 });
 

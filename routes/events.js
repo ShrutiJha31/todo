@@ -6,7 +6,7 @@ var pool = require('../db')
 Router.get("/",(req,res)=>{
         pool.getConnection((err, connection) => {
                 if(err) throw err
-                console.log('connected as id ' + connection.threadId)
+                
                 connection.query('SELECT * from events', (err, rows) => {
                     connection.release() // return the connection to pool
         
