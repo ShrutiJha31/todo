@@ -1,5 +1,5 @@
 # todo
-dd header - Content-type - application/json  <br />
+Add header - Content-type - application/json  <br />
 Post to /events - to insert events <br />
 Get to /events - to get all events <br />
 Get to /events/:id - to get event by id <br />
